@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Denk+One&display=swap");
+
+body {
+  background: linear-gradient(
+    83deg,
+    rgba(102, 102, 102, 1) 0%,
+    rgba(152, 157, 103, 1) 48%,
+    rgba(38, 38, 38, 1) 100%
+  );
+  color: rgb(220, 220, 220);
+  font-family: "Denk One", sans-serif;
+  border-radius: 4px;
+}
+
+button,
+input {
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  font-family: "Denk One", sans-serif;
+}
+
+input::placeholder {
+  color: #000;
+}
+
+input:focus {
+  color: rgb(179, 216, 30);
+  background-color: rgba(40, 40, 40, 0.454);
+}
+
+button {
+  cursor: pointer;
+  background-color: rgb(179, 216, 30);
+  color: #333;
+  font-weight: bold;
+}
+.titleLogin {
+  font-size: 20px;
+}
+
+.johviColor {
+  font-weight: bold;
+  color: rgb(3, 3, 3);
+  text-transform: uppercase;
+}
+.koodColor {
+  font-weight: bold;
+  color: rgb(179, 216, 30);
+  text-transform: uppercase;
+}
+
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #555931;
+  border: 2px solid #f3f3f3;
+  border-radius: 18px;
+  padding: 25px;
+  height: 250px;
+  width: 300px;
+}
+
+.loginPage button,
+.loginPage input {
+  margin-top: 25px;
+}
+
+.mainPage {
+  display: none;
+}

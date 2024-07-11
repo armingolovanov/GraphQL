@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Graphql KOOD|JÕHVI</title>
+    <script src="js/authentication.js" defer></script>
+    <script src="js/login.js"></script>
+    <script src="js/query.js"></script>
+</head>
+
+<body>
+    <!--LOGIN FORM-->
+    <form id="login">
+        <div class="loginPage">
+            <h3 class="titleLogin">Login with <span class="koodColor">kood</span><span class="johviColor">/jõhvi
+                </span>credentials</h3>
+            <input class="usernameOrEmail" placeholder="Username or Email" required>
+            <input class="password" type="password" placeholder="Password" required>
+            <button class="loginBtn" type="submit">Login</button>
+            <div class="errorOnPage"></div>
+        </div>
+    </form>
+
+    <div class="mainPage">
+        <div class="navBar">
+            <button id="navBarWelcomeName"></button>
+            <!--<button class="logOutBtn" onclick="logOut()" type="button">LOGOUT</button>-->
+        </div>
+        <div class="displayGrapichs" id="userData"></div>
+    </div>
+
+</body>
+
+</html>
