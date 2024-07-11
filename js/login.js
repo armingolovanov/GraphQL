@@ -18,10 +18,9 @@ function displayMainPage() {
   document.querySelector(".mainPage").style.display = "block";
 }
 
-/*function logOut() {
+function logOut() {
   document.querySelector(".loginPage").style.display = "flex";
   document.querySelector(".mainPage").style.display = "none";
   document.querySelector(".errorOnPage").style.textContent = "";
   localStorage.removeItem("jwt");
 }
-*/
