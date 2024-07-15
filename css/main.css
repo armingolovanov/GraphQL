@@ -76,6 +76,75 @@ button {
   margin-top: 25px;
 }
 
+.errorMsg {
+  color: #d8e845;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 .mainPage {
   display: none;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+}
+
+#navBarWelcomeName {
+  text-align: center;
+  font-size: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  border: 2px solid #d5e91e;
+  /*margin: 0 0 0 40%;*/
+}
+
+.logOutBtn {
+  margin-left: auto;
+  font-size: 16px;
+  width: 10%;
+  border: 2px solid #d5e91e;
+}
+
+.displayQueryData {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 18% 2fr 1fr;
+  height: 90vh;
+  gap: 10px;
+  margin: 10px;
+}
+
+.dataToDisplay {
+  border: 1px solid #d5e91e;
+  background-color: #33333370;
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  justify-items: center;
+}
+
+#userData {
+  grid-column: span 2;
+  grid-row: 1;
+}
+
+#totalXpAmount {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.userXp {
+  grid-column: span 2;
+  grid-row: 2;
 }

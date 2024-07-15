@@ -9,6 +9,9 @@
     <script src="js/authentication.js" defer></script>
     <script src="js/login.js"></script>
     <script src="js/query.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/xpChart.js"></script>
+
 </head>
 
 <body>
@@ -19,8 +22,8 @@
                 </span>credentials</h3>
             <input class="usernameOrEmail" placeholder="Username or Email" required>
             <input class="password" type="password" placeholder="Password" required>
-            <button class="loginBtn" type="submit">Login</button>
-            <div class="errorOnPage"></div>
+            <button class="login" type="submit">Login</button>
+            <div class="errorMsg"></div>
         </div>
     </form>
 
@@ -29,7 +32,11 @@
             <button id="navBarWelcomeName"></button>
             <button class="logOutBtn" onclick="logOut()" type="button">LOGOUT</button>
         </div>
-        <div class="displayGrapichs" id="userData"></div>
+        <div class="displayQueryData">
+            <div class="dataToDisplay" id="userData"></div>
+            <div class="dataToDisplay" id="userXp"></div>
+            <div class="dataToDisplay" id="totalXpAmount">3</div>
+        </div>
     </div>
 
 </body>
