@@ -125,7 +125,7 @@ button {
 
 .dataToDisplay {
   border: 1px solid #d5e91e;
-  background-color: #33333370;
+  background-color: #0000007a;
   padding: 10px;
   display: grid;
   justify-content: center;
@@ -147,4 +147,8 @@ button {
 .userXp {
   grid-column: span 2;
   grid-row: 2;
+}
+
+.chart-text {
+  font-size: 10px;
 }

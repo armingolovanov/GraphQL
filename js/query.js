@@ -9,26 +9,6 @@ function getUserData() {
   });
 }
 
-async function makeQuery(query) {
-  const response = await fetch(
-    "https://01.kood.tech/api/graphql-engine/v1/graphql",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query: query }),
-    }
-  );
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error || "Error fetching user data");
-  }
-  const data = await response.json();
-  return data;
-}
-
 // ----------------------------------
 async function displayProfile() {
   let userObject = `{
@@ -39,7 +19,7 @@ async function displayProfile() {
     }
 }`;
 
-  const qry = await makeQuery(userObject);
+  const qry = await fetchQuery(userObject);
   const userData = qry.data.user[0];
   console.log("userdata", userData);
   const auditRatio = userData.auditRatio.toFixed(2);
@@ -86,7 +66,7 @@ async function displayXps() {
     }
 }`;
 
-  const data = await makeQuery(xpsData);
+  const data = await fetchQuery(xpsData);
   console.log(data);
   // Lets store Xps with each project name into an array
   // userXps -> data -> transaction -> amount + object.name
@@ -98,7 +78,13 @@ async function displayXps() {
   // Calculate total xp
   let totalXpGained = 0;
   xpData.forEach((item) => {
-    totalXpGained += item.amount / 1000;
+    const xpAmount = Number(item.amount);
+    if (xpAmount >= 1000) {
+      // Convert to MB if amount is over 1000 Kb
+      totalXpGained += xpAmount / 1000;
+    } else {
+      totalXpGained += xpAmount;
+    }
   });
   // Sort object names based on amount of xp gained -> largest to smallest
   xpData.sort((a, b) => b.amount - a.amount);
@@ -106,5 +92,5 @@ async function displayXps() {
   displayXpChart(xpData);
   // console for errors
   console.log("XP DATA:", xpData);
-  console.log("Total XP Amount:", totalXpGained.toFixed(2));
+  console.log("Total XP Amount:", totalXpGained);
 }
