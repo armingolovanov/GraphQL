@@ -1,7 +1,7 @@
 function getUserData() {
   displayMainPage();
 
-  let functions = [displayProfile, displayXps]; //displayXps, displayGrades, displayAudit
+  let functions = [displayProfile, displayXps, displayLevel]; //displayXps, displayGrades, displayAudit
   functions.forEach((func) => {
     func().catch((err) => {
       console.error(`function ${func.name}: ${err.message}`);
@@ -16,13 +16,12 @@ async function displayProfile() {
     auditRatio
     login
     attrs
+    id
     }
 }`;
 
   const qry = await fetchQuery(userObject);
   const userData = qry.data.user[0];
-  console.log("userdata", userData);
-  const auditRatio = userData.auditRatio.toFixed(2);
   const attrs = userData.attrs;
   const login = userData.login;
 
@@ -67,7 +66,6 @@ async function displayXps() {
 }`;
 
   const data = await fetchQuery(xpsData);
-  console.log(data);
   // Lets store Xps with each project name into an array
   // userXps -> data -> transaction -> amount + object.name
   // Processing data
@@ -75,22 +73,130 @@ async function displayXps() {
     name: item.object.name,
     amount: (item.amount / 1000).toFixed(0), // Convert amount to kilobytes
   }));
-  // Calculate total xp
-  let totalXpGained = 0;
-  xpData.forEach((item) => {
-    const xpAmount = Number(item.amount);
-    if (xpAmount >= 1000) {
-      // Convert to MB if amount is over 1000 Kb
-      totalXpGained += xpAmount / 1000;
-    } else {
-      totalXpGained += xpAmount;
-    }
-  });
   // Sort object names based on amount of xp gained -> largest to smallest
   xpData.sort((a, b) => b.amount - a.amount);
   // Display in chart
   displayXpChart(xpData);
   // console for errors
-  console.log("XP DATA:", xpData);
-  console.log("Total XP Amount:", totalXpGained);
+  //console.log("XP DATA:", xpData);
+  //console.log("Total XP Amount:", totalXpGained);
+}
+
+async function displayLevel() {
+  // Fetch user ID to get level
+  const userIdQuery = `
+    {
+      user {
+        id
+      }
+    }
+  `;
+
+  try {
+    const userIdResponse = await fetchQuery(userIdQuery);
+    const users = userIdResponse.data.user;
+
+    if (users.length === 0) {
+      console.error("No users found");
+      return;
+    }
+    const userId = users[0].id;
+
+    // Fetch user level transaction using the userId
+    const userLevelQuery = `
+      {
+        transaction(
+          where: {
+            userId: {_eq: ${userId}}, 
+            type: {_eq: "level"}, 
+            object: {type: {_regex: "project"}}
+          },
+          order_by: {amount: desc},
+          limit: 1
+        ) {
+          amount
+        }
+      }
+    `;
+
+    const userLevelResponse = await fetchQuery(userLevelQuery);
+    const userLevelTransaction = userLevelResponse.data.transaction;
+
+    if (userLevelTransaction.length === 0) {
+      console.error("No level transactions found for user");
+      return;
+    }
+
+    const userLevel = userLevelTransaction[0].amount;
+    console.log(`User Level: ${userLevel}`);
+
+    // Fetch and process XP data
+    const xpsData = `
+      {
+        transaction(where: {type: {_eq:"xp"}, object: {type: {_eq:"project"}}}) {
+          amount
+          object {
+            name
+          }
+        }
+      }
+    `;
+
+    const data = await fetchQuery(xpsData);
+    // Process XP data
+    const xpData = data.data.transaction.map((item) => ({
+      name: item.object.name,
+      amount: (item.amount / 1000).toFixed(0), // Convert amount to kilobytes
+    }));
+
+    // Calculate total XP gained
+    let totalXpGained = 0;
+    xpData.forEach((item) => {
+      const xpAmount = Number(item.amount);
+      if (xpAmount >= 1000) {
+        // Convert to MB if amount is over 1000 Kb
+        totalXpGained += xpAmount / 1000;
+      } else {
+        totalXpGained += xpAmount;
+      }
+    });
+
+    // Sort object names based on amount of XP gained -> largest to smallest
+    xpData.sort((a, b) => b.amount - a.amount);
+
+    // Display Total Kilobyte and Student level on xpAndLevel
+    const xpAndLevelDiv = document.getElementById("xpAndLevel");
+    if (xpAndLevelDiv) {
+      if (totalXpGained >= 1000) {
+        totalXpGained = `${totalXpGained.toFixed(1) / 1000} MB`;
+      } else {
+        totalXpGained = `${totalXpGained} Kb`;
+      }
+
+      xpAndLevelDiv.innerHTML = `
+    <div id="xpAndLevel">
+     <div class="boxDataCenter">
+            <div class="label">Total XP</div>
+            <div class="value">${totalXpGained}</div>
+        </div>
+        <div class="boxDataCenter">
+            <div class="label">Level</div>
+            <div class="value">${userLevel}</div>
+        </div>
+    </div>
+`;
+    } else {
+      console.error("Div with xpAndLevel not found!");
+    }
+    /*document.getElementById(
+      "xpAndLevel"
+    ).innerHTML = `<div class="boxData">Total Xp: ${totalXpGained}</div>
+    <div class="boxData">Level: ${userLevel}</div>`;
+*/
+    // Log for debugging
+    console.log("Kilobytes:", xpData);
+    console.log("Total XP Gained:", totalXpGained);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 }
