@@ -13,10 +13,12 @@ function getUserData() {
 async function displayProfile() {
   let userObject = `{
     user{
-    auditRatio
     login
     attrs
     id
+    auditRatio
+    totalUp
+    totalDown
     }
 }`;
 
@@ -47,7 +49,34 @@ async function displayProfile() {
   <div class="boxData">${email}</div>
   <div class="boxData">${tel}</div>
   <div class="boxData">${addressStreet}, ${addressCity}, ${addressCountry}</div>`;
+
+  const auditRatio = userData.auditRatio.toFixed(1);
+  const totalUp = (userData.totalUp / 1000000).toFixed(2);
+  const totalDown = (userData.totalDown / 1000000).toFixed(2);
+  // Calculate totalUp and totalDown percentage relative to the sum of both
+  const totalBar = userData.totalUp + userData.totalDown;
+  const totalUpPercentage = (userData.totalUp / totalBar) * 100;
+  const totalDownPercentage = 100 - totalUpPercentage;
+
+  document.getElementById("auditRatio").innerHTML = `
+  <div class="auditDiv">
+    <div class="auditTitle">Audit Ratio</div>
+    <div class="auditRatio">${auditRatio}</div>
+  </div>
+    <div class="barContainer">
+      <div class="bar barUp" style="width: ${totalUpPercentage}%;">${totalUpPercentage.toFixed(
+    2
+  )}%</div>
+      <div class="bar barDown" style="width: ${totalDownPercentage}%;">${totalDownPercentage.toFixed(
+    2
+  )}%</div>
+    </div>
+    <div class="auditLastRow">
+      <div class="auditData upCls">↑Done ${totalUp} MB</div>
+      <div class="auditData downCls">↓Received ${totalDown} MB</div>
+    </div>`;
 }
+
 // ------------------END-------------------
 
 // ----------------------------------
@@ -178,6 +207,10 @@ async function displayLevel() {
      <div class="boxDataCenter">
             <div class="label">Total XP</div>
             <div class="value">${totalXpGained}</div>
+        </div>
+             <div class="boxDataCenter">
+            <div class="label">Rank</div>
+            <div class="value">${getRank(userLevel)} Developer</div>
         </div>
         <div class="boxDataCenter">
             <div class="label">Level</div>

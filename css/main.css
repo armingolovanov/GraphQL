@@ -159,27 +159,96 @@ button {
 }
 
 .boxDataCenter {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  border-bottom: 5px solid #d8e845;
+  border-radius: 14px;
+  padding-bottom: 5px;
 }
 
-.boxDataCenter:first-child {
-  margin-right: 300px; /* Space to the right of the first boxData */
+.boxDataCenter:not(:last-child) {
+  margin-right: 200px; /* Space to the right of the first boxData */
 }
 
 .label {
-  font-size: 30px;
+  font-size: 38px;
   color: #d5e91e;
   flex-direction: row;
 }
 
 .value {
-  font-size: 58px;
+  font-size: 26px;
 }
 
 #b {
   grid-row: 1;
   grid-column: 3;
+}
+
+.auditDiv {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.auditTitle {
+  font-weight: bold;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-right: 110px;
+}
+
+.auditRatio {
+  font-size: 15px;
+  border: 3px solid #d5e91e;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+.barContainer {
+  width: 300px;
+  display: flex;
+  margin: 5px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #ffd900;
+  background-color: orange;
+}
+
+.bar {
+  height: 20px;
+  line-height: 20px;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.barUp {
+  background: #b3d81e;
+  border-radius: 250px;
+}
+
+.barDown {
+  background: orange;
+}
+
+.auditLastRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.upCls {
+  color: #b3d81e;
+}
+
+.downCls {
+  color: orange;
 }
