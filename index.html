@@ -13,6 +13,8 @@
     <script src="js/xpChart.js"></script>
     <script src="js/fetchQuery.js"></script>
     <script src="js/helper.js"></script>
+    <script src="js/skillChart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -39,7 +41,12 @@
             <div class="dataToDisplay" id="xpAndLevel"></div>
             <div class="dataToDisplay" id="auditRatio">auditRatio</div>
             <div class="dataToDisplay" id="userXp"></div>
-            <div class="dataToDisplay" id="totalXpAmount">top skills</div>
+
+            <div class="dataToDisplay" id="topSkills">
+                <h2 class="chart-heading">Top skills</h2>
+                <svg id="pieChart" width="310" height="500"></svg>
+
+            </div>
         </div>
     </div>
 

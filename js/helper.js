@@ -16,3 +16,17 @@ function getRank(userLevel) {
     }
   }
 }
+
+function cleanTopSkillDublicates(data) {
+  const dataArray = data.data.transaction;
+  const highest = {};
+
+  dataArray.forEach((obj) => {
+    if (!highest[obj.type] || obj.amount > highest[obj.type].amount) {
+      highest[obj.type] = obj;
+    }
+  });
+
+  const uniqueData = Object.values(highest);
+  return uniqueData;
+}

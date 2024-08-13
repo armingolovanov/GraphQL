@@ -1,7 +1,7 @@
 function getUserData() {
   displayMainPage();
 
-  let functions = [displayProfile, displayXps, displayLevel]; //displayXps, displayGrades, displayAudit
+  let functions = [displayProfile, displayXps, displayLevel, displayTopSkills]; //displayXps, displayGrades, displayAudit
   functions.forEach((func) => {
     func().catch((err) => {
       console.error(`function ${func.name}: ${err.message}`);
@@ -232,4 +232,29 @@ async function displayLevel() {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
+}
+
+async function displayTopSkills() {
+  let topSkills = `
+    {  
+        transaction(
+            where: {type: {_ilike: "%skill%"}},
+            order_by: {amount: desc}
+        ) {
+            type
+            amount
+        }
+    }`;
+
+  //const data = await fetchQuery(topSkills);
+  //const cleanData = cleanTopSkillDublicates(data);
+  const data = [
+    { label: "JAVASCRIPT", value: 12 },
+    { label: "B", value: 24 },
+    { label: "C", value: 36 },
+    { label: "D", value: 48 },
+    { label: "F", value: 60 },
+  ];
+  // After removing cleanData from qraphql data we received, now we can make chart and display our top skills in there by looping each skill
+  createPieChart(data);
 }
