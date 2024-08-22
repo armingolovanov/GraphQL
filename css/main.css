@@ -147,7 +147,16 @@ button {
 #userXp {
   grid-column: 2 / 4;
   grid-row: 2;
-  overflow-x: auto;
+  overflow: auto;
+  white-space: nowrap;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#userXp svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 #xpAndLevel {
@@ -295,6 +304,12 @@ button {
     white-space: nowrap;
   }
 
+  #userXp svg {
+    width: auto;
+    height: auto;
+    overflow-x: auto;
+  }
+
   #topSkills {
     grid-column: 1 / 4;
     grid-row: 3;
@@ -312,12 +327,6 @@ button {
     align-items: center;
     overflow-y: auto;
     justify-items: center;
-  }
-
-  #userXp svg {
-    width: auto;
-    height: auto;
-    max-width: 1400px;
   }
 
   .boxDataCenter {
