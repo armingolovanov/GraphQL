@@ -203,7 +203,7 @@ async function displayLevel() {
       }
 
       xpAndLevelDiv.innerHTML = `
-    <div id="xpAndLevel">
+
      <div class="boxDataCenter">
             <div class="label">Total XP</div>
             <div class="value">${totalXpGained}</div>
@@ -216,7 +216,7 @@ async function displayLevel() {
             <div class="label">Level</div>
             <div class="value">${userLevel}</div>
         </div>
-    </div>
+
 `;
     } else {
       console.error("Div with xpAndLevel not found!");
