@@ -289,11 +289,6 @@ button {
     white-space: nowrap;
   }
 
-  #userXp svg {
-    width: auto;
-    height: auto;
-    overflow-x: auto;
-  }
 
   #topSkills {
     grid-column: 1 / 4;
