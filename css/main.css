@@ -274,7 +274,8 @@ button {
 
   #xpAndLevel {
     grid-column: 2 / 3;
-    grid-row: 1;
+    grid-row: 1;  
+    flex-wrap:wrap;
   }
 
   #auditRatio {
