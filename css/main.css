@@ -147,16 +147,7 @@ button {
 #userXp {
   grid-column: 2 / 4;
   grid-row: 2;
-  overflow: auto;
-  white-space: nowrap;
-  display: flex;
   justify-content: flex-start;
-}
-
-#userXp svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 #xpAndLevel {
