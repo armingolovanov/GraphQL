@@ -147,6 +147,7 @@ button {
 #userXp {
   grid-column: 2 / 4;
   grid-row: 2;
+  overflow-x: auto;
 }
 
 #xpAndLevel {
@@ -184,10 +185,10 @@ button {
   font-size: 26px;
 }
 
-#b {
+/*#b {
   grid-row: 1;
   grid-column: 3;
-}
+}*/
 
 .auditDiv {
   display: flex;
@@ -251,4 +252,117 @@ button {
 
 .downCls {
   color: orange;
+}
+
+@media (max-width: 1024px) {
+  .loginPage {
+    width: 80%;
+    max-width: 350px;
+    padding: 20px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+  }
+
+  .displayQueryData {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    height: auto;
+    gap: 10px;
+    margin: 10px;
+  }
+
+  #userData {
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  #xpAndLevel {
+    grid-column: 2 / 3;
+    grid-row: 1;
+  }
+
+  #auditRatio {
+    grid-column: 3 / 4;
+    grid-row: 1;
+  }
+
+  #userXp {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #topSkills {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dataToDisplay {
+    border: 1px solid #d5e91e;
+    background-color: #0000007a;
+    padding: 10px; /* Added more padding for better content separation */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    justify-items: center;
+  }
+
+  #userXp svg {
+    width: auto;
+    height: auto;
+    max-width: 1400px;
+  }
+
+  .boxDataCenter {
+    margin-bottom: 10px; /* Stack elements vertically */
+    border-bottom: 5px solid #d8e845; /* Border at the bottom */
+    border-radius: 14px;
+    padding-bottom: 5px;
+  }
+
+  .label {
+    font-size: 24px;
+  }
+
+  .value {
+    font-size: 16px;
+  }
+
+  .boxDataCenter:not(:last-child) {
+    margin-right: 25px;
+  }
+
+  .barContainer {
+    width: 100%; /* Full width for better utilization of space */
+  }
+
+  .auditTitle {
+    font-size: 18px; /* Adjusted font size */
+    margin-right: 10px; /* Reduced margin-right for better alignment */
+  }
+
+  .auditRatio {
+    padding: 4px; /* Adjusted padding */
+    font-size: 10px; /* Adjusted font size */
+  }
+
+  .logOutBtn {
+    width: auto; /* Auto width to fit content */
+    font-size: 14px; /* Adjusted font size */
+    padding: 8px; /* Added padding for better button appearance */
+  }
+
+  #navBarWelcomeName {
+    width: 75%; /* Full width to use available space */
+    font-size: 16px; /* Adjusted font size */
+    overflow-x: auto; /* Ensures text doesn't overflow */
+    text-align: center; /* Center-align text */
+  }
 }

@@ -126,7 +126,7 @@ async function displayLevel() {
     const users = userIdResponse.data.user;
 
     if (users.length === 0) {
-      console.error("No users found");
+      //console.error("No users found");
       return;
     }
     const userId = users[0].id;
@@ -157,7 +157,7 @@ async function displayLevel() {
     }
 
     const userLevel = userLevelTransaction[0].amount;
-    console.log(`User Level: ${userLevel}`);
+    //console.log(`User Level: ${userLevel}`);
 
     // Fetch and process XP data
     const xpsData = `
@@ -227,15 +227,15 @@ async function displayLevel() {
     <div class="boxData">Level: ${userLevel}</div>`;
 */
     // Log for debugging
-    console.log("Kilobytes:", xpData);
-    console.log("Total XP Gained:", totalXpGained);
+    //console.log("Kilobytes:", xpData);
+    //console.log("Total XP Gained:", totalXpGained);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 
 async function displayTopSkills() {
-  let topSkills = `
+  let topSkillsQuery = `
     {  
         transaction(
             where: {type: {_ilike: "%skill%"}},
@@ -246,15 +246,8 @@ async function displayTopSkills() {
         }
     }`;
 
-  //const data = await fetchQuery(topSkills);
-  //const cleanData = cleanTopSkillDublicates(data);
-  const data = [
-    { label: "JAVASCRIPT", value: 12 },
-    { label: "B", value: 24 },
-    { label: "C", value: 36 },
-    { label: "D", value: 48 },
-    { label: "F", value: 60 },
-  ];
+  const data = await fetchQuery(topSkillsQuery);
+  const cleanData = cleanTopSkillDublicates(data);
   // After removing cleanData from qraphql data we received, now we can make chart and display our top skills in there by looping each skill
-  createPieChart(data);
+  createPieChart(transformSkillTypes(cleanData));
 }
