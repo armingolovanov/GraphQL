@@ -356,13 +356,9 @@ button {
   }
 
   #navBarWelcomeName {
-    width: 75%;
-    /* Full width to use available space */
-    font-size: 16px;
-    /* Adjusted font size */
-    overflow-x: auto;
-    /* Ensures text doesn't overflow */
-    text-align: center;
-    /* Center-align text */
+    width: 70%;
+    position: initial;
+    transform: initial;
   }
+}
 }
