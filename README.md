@@ -44,8 +44,10 @@ This project aims to develop a personal profile page using the GraphQL query lan
 - With extension <br>
 ![extension1](liveserver.png)
 
-- Without extension
-* making here github page*
+- Without extension hosted on github
+[🌐GraphQL](https://armingolovanov.github.io/GraphQL/)
+
+- `https://armingolovanov.github.io/GraphQL/`
 
 ## Contributing
 Contributions are welcome! 
